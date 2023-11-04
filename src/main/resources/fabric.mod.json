@@ -8,8 +8,8 @@
 		"renapti"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/minimal-coords-hud",
+		"sources": "https://github.com/renapti/MinimalCoordsHud"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/minimalcoordshud/icon.png",
