@@ -2,14 +2,20 @@
 
 [Get it on Modrinth!](https://modrinth.com/mod/minimal-coords-hud)
 
-This is my first Fabric Mod, and it is a pretty simple one. This mod displays a coordinates list on the top left, and with the press of a key, you can copy both your current coordinates *and* your interdimensional coordinates in a simple `X Y Z` format.
+This is my first Fabric Mod, and it is a pretty simple one. This mod displays a coordinates list on the top left, and
+with the press of a key, you can copy both your current coordinates *and* your interdimensional coordinates in a
+simple `X Y Z` format.
 
-Most mods that I've found either lack the copy coordinates feature, or do *way* more than I need the mod for. So, I took it upon myself to make a mod that *solely* fulfills these two purposes: showing your coordinates, and easily copying them.
+Most mods that I've found either lack the copy coordinates feature, or do *way* more than I need the mod for. So, I took
+it upon myself to make a mod that *solely* fulfills these two purposes: showing your coordinates, and easily copying
+them.
 
-By default, `M` copies current coordinates, `Comma` copies interdimensional coordinates, and `N` toggles the display of the menu, but these are configurable in the Options > Key Binds menu. The menu is hidden when either the debug menu is opened or the player's HUD is hidden with F1, but other hotkeys will still work.
+By default, `M` copies current coordinates, `Comma` copies interdimensional coordinates, and `N` toggles the display of
+the menu, but these are configurable in the Options > Key Binds menu. The menu is hidden when either the debug menu is
+opened or the player's HUD is hidden with F1, but other hotkeys will still work.
 
-
-**⚠️ This mod is not currently compatible with any dimension-adding mods. It will only work as expected with the three vanilla dimensions.**
+**⚠️ This mod is not currently compatible with any dimension-adding mods. It will only work as expected with the three
+vanilla dimensions.**
 
 ---
 ### Overworld

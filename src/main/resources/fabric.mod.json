@@ -1,37 +1,37 @@
 {
-	"schemaVersion": 1,
-	"id": "minimalcoordshud",
-	"version": "${version}",
-	"name": "MinimalCoordsHud",
-	"description": "Gives a simple coordinates display and lets you copy them to the clipboard -- that's it!",
-	"authors": [
-		"renapti"
-	],
-	"contact": {
-		"homepage": "https://modrinth.com/mod/minimal-coords-hud",
-		"sources": "https://github.com/renapti/MinimalCoordsHud"
-	},
-	"license": "CC0-1.0",
-	"icon": "assets/minimalcoordshud/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"com.renapti.minimalcoordshud.MinimalCoordsHud"
-		],
-		"client": [
-			"com.renapti.minimalcoordshud.client.MinimalCoordsHudClient"
-		]
-	},
-	"mixins": [
-		"minimalcoordshud.mixins.json"
-	],
-	"depends": {
-		"fabricloader": ">=0.14.24",
-		"minecraft": "1.20.1",
-		"java": ">=17",
-		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
-	}
+  "schemaVersion": 1,
+  "id": "minimalcoordshud",
+  "version": "${version}",
+  "name": "MinimalCoordsHud",
+  "description": "Gives a simple coordinates display and lets you copy them to the clipboard -- that's it!",
+  "authors": [
+    "renapti"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/minimal-coords-hud",
+    "sources": "https://github.com/renapti/MinimalCoordsHud"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/minimalcoordshud/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.renapti.minimalcoordshud.MinimalCoordsHud"
+    ],
+    "client": [
+      "com.renapti.minimalcoordshud.client.MinimalCoordsHudClient"
+    ]
+  },
+  "mixins": [
+    "minimalcoordshud.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.24",
+    "minecraft": "1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
 }

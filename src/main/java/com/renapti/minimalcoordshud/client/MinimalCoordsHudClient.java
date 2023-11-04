@@ -8,7 +8,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
-import net.minecraft.world.dimension.DimensionType;
 import org.lwjgl.glfw.GLFW;
 
 public class MinimalCoordsHudClient implements ClientModInitializer
@@ -17,9 +16,64 @@ public class MinimalCoordsHudClient implements ClientModInitializer
     public static KeyBinding copyInterCoords;
     public static KeyBinding toggleHUD;
 
+    private static void copyCoords(MinecraftClient mc)
+    {
+        assert mc.player != null;
+
+        // Formatted string to copy
+        String copied = (int) Math.ceil(mc.player.getX()) + " " +
+                (int) Math.ceil(mc.player.getY()) + " " +
+                (int) Math.ceil(mc.player.getZ());
+
+        // Notify the player and copy
+        mc.player.sendMessage(Text.translatable("chat.minimalcoordshud.copied", copied));
+        mc.keyboard.setClipboard(copied);
+    }
+
+    private static void copyInterCoords(MinecraftClient mc)
+    {
+        assert mc.player != null;
+
+        String copied = "";
+        double scale = mc.player.getWorld().getDimension().coordinateScale();
+        boolean failed = false;
+
+        // Nether -- copy Overworld coords
+        if (scale == 8.0)
+        {
+            // Since we're in the Nether, multiply to get Overworld coords
+            copied = (int) Math.ceil(mc.player.getX() * 8) + " " +
+                    (int) Math.ceil(mc.player.getY()) + " " +
+                    (int) Math.ceil(mc.player.getZ() * 8);
+
+            mc.player.sendMessage(Text.translatable("chat.minimalcoordshud.copied.overworld", copied));
+        }
+        // Overworld -- copy Nether coords
+        else if (scale == 1.0)
+        {
+            // Since we're in the Overworld, divide to get Nether coords
+            copied = (int) Math.ceil(mc.player.getX() / 8) + " " +
+                    (int) Math.ceil(mc.player.getY()) + " " +
+                    (int) Math.ceil(mc.player.getZ() / 8);
+
+            mc.player.sendMessage(Text.translatable("chat.minimalcoordshud.copied.nether", copied));
+        }
+        else
+        {
+            // The dimension must be modded, because the scale is neither 8 or 1.
+            mc.player.sendMessage(Text.translatable("chat.minimalcoordshud.failed"));
+            failed = true;
+        }
+
+        // Copy to clipboard if successful
+        if (!failed)
+            mc.keyboard.setClipboard(copied);
+    }
+
     @Override
     public void onInitializeClient()
     {
+        // Copy normal coords keybind - default is M
         copyCoords = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.minimalcoordshud.copycoords",
                 InputUtil.Type.KEYSYM,
@@ -27,6 +81,7 @@ public class MinimalCoordsHudClient implements ClientModInitializer
                 "category.minimalcoordshud.main"
         ));
 
+        // Copy translated coords keybind - default is comma
         copyInterCoords = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.minimalcoordshud.copycoords.interdimensional",
                 InputUtil.Type.KEYSYM,
@@ -34,6 +89,7 @@ public class MinimalCoordsHudClient implements ClientModInitializer
                 "category.minimalcoordshud.main"
         ));
 
+        // Toggle mod HUD - default is N
         toggleHUD = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.minimalcoordshud.togglehud",
                 InputUtil.Type.KEYSYM,
@@ -41,6 +97,7 @@ public class MinimalCoordsHudClient implements ClientModInitializer
                 "category.minimalcoordshud.main"
         ));
 
+        // Listen for key presses
         ClientTickEvents.END_CLIENT_TICK.register(mc ->
         {
             if (MinimalCoordsHudClient.copyCoords.wasPressed())
@@ -52,54 +109,11 @@ public class MinimalCoordsHudClient implements ClientModInitializer
                 copyInterCoords(mc);
             }
 
+            // Toggle the HUD
             while (MinimalCoordsHudClient.toggleHUD.wasPressed())
             {
                 MinimalCoordsHud.isHUDToggled = !MinimalCoordsHud.isHUDToggled;
             }
         });
-    }
-
-    private static void copyCoords(MinecraftClient mc)
-    {
-        assert mc.player != null;
-        String copied = (int) Math.ceil(mc.player.getX()) + " " +
-                (int) Math.ceil(mc.player.getY()) + " " +
-                (int) Math.ceil(mc.player.getZ());
-
-        mc.player.sendMessage(Text.translatable("chat.minimalcoordshud.copied", copied));
-        mc.keyboard.setClipboard(copied);
-    }
-
-    private static void copyInterCoords(MinecraftClient mc)
-    {
-        assert mc.player != null;
-        double scale = mc.player.getWorld().getDimension().coordinateScale();
-
-        String copied = "";
-
-        // Nether -- copy Overworld coords
-        if (scale == 8.0)
-        {
-            copied = (int) Math.ceil(mc.player.getX() * 8) + " " +
-                    (int) Math.ceil(mc.player.getY()) + " " +
-                    (int) Math.ceil(mc.player.getZ() * 8);
-
-            mc.player.sendMessage(Text.translatable("chat.minimalcoordshud.copied.overworld", copied));
-        }
-        // Overworld -- copy Nether coords
-        else if (scale == 1.0)
-        {
-            copied = (int) Math.ceil(mc.player.getX() / 8) + " " +
-                    (int) Math.ceil(mc.player.getY()) + " " +
-                    (int) Math.ceil(mc.player.getZ() / 8);
-
-            mc.player.sendMessage(Text.translatable("chat.minimalcoordshud.copied.nether", copied));
-        }
-        else
-        {
-            mc.player.sendMessage(Text.translatable("chat.minimalcoordshud.failed"));
-        }
-
-        mc.keyboard.setClipboard(copied);
     }
 }
