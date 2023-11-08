@@ -6,5 +6,7 @@
   "chat.minimalcoordshud.copied": "◆ Copied the coordinates (%d) to the clipboard!",
   "chat.minimalcoordshud.copied.overworld": "◆ Copied the Overworld coordinates (%d) to the clipboard!",
   "chat.minimalcoordshud.copied.nether": "◆ Copied the Nether coordinates (%d) to the clipboard!",
-  "chat.minimalcoordshud.failed": "⚠ Could not copy! Are you in a modded dimension?"
+  "chat.minimalcoordshud.failed": "⚠ Could not copy! Are you in a modded dimension?",
+  "hud.minimalcoordshud.facing.positive": "(+)",
+  "hud.minimalcoordshud.facing.negative": "(-)"
 }
