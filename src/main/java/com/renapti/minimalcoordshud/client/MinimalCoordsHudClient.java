@@ -1,6 +1,7 @@
 package com.renapti.minimalcoordshud.client;
 
 import com.renapti.minimalcoordshud.MinimalCoordsHud;
+import com.renapti.minimalcoordshud.config.Vars;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -15,6 +16,7 @@ public class MinimalCoordsHudClient implements ClientModInitializer
     public static KeyBinding copyCoords;
     public static KeyBinding copyInterCoords;
     public static KeyBinding toggleHUD;
+    public static KeyBinding changeCorner;
 
     private static void copyCoords(MinecraftClient mc)
     {
@@ -48,10 +50,10 @@ public class MinimalCoordsHudClient implements ClientModInitializer
 
             mc.player.sendMessage(Text.translatable("chat.minimalcoordshud.copied.overworld", copied));
         }
-        // Overworld -- copy Nether coords
+        // Overworld or End -- copy Nether coords
         else if (scale == 1.0)
         {
-            // Since we're in the Overworld, divide to get Nether coords
+            // Since we're in the Overworld or End, divide to get Nether coords
             copied = (int) Math.ceil(mc.player.getX() / 8) + " " +
                     (int) Math.ceil(mc.player.getY()) + " " +
                     (int) Math.ceil(mc.player.getZ() / 8);
@@ -97,6 +99,14 @@ public class MinimalCoordsHudClient implements ClientModInitializer
                 "category.minimalcoordshud.main"
         ));
 
+        // Toggle mod corner - default is period
+        changeCorner = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+                "key.minimalcoordshud.changecorner",
+                InputUtil.Type.KEYSYM,
+                GLFW.GLFW_KEY_PERIOD,
+                "category.minimalcoordshud.main"
+        ));
+
         // Listen for key presses
         ClientTickEvents.END_CLIENT_TICK.register(mc ->
         {
@@ -112,7 +122,28 @@ public class MinimalCoordsHudClient implements ClientModInitializer
             // Toggle the HUD
             while (MinimalCoordsHudClient.toggleHUD.wasPressed())
             {
-                MinimalCoordsHud.isHUDToggled = !MinimalCoordsHud.isHUDToggled;
+                Vars.isHUDToggled = !Vars.isHUDToggled;
+            }
+
+            // Change corner
+            while (MinimalCoordsHudClient.changeCorner.wasPressed())
+            {
+                switch (Vars.corner)
+                {
+                    case TL ->
+                        Vars.corner = Vars.CORNERS.TR;
+                    case TR ->
+                        Vars.corner = Vars.CORNERS.BR;
+                    case BR ->
+                        Vars.corner = Vars.CORNERS.BL;
+                    case BL ->
+                        Vars.corner = Vars.CORNERS.TL;
+                    default ->
+                    {
+                        MinimalCoordsHud.LOGGER.warn("Invalid corner (Was " + Vars.corner + ")");
+                        Vars.corner = Vars.CORNERS.TL;
+                    }
+                }
             }
         });
     }

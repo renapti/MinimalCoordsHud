@@ -3,8 +3,7 @@
   "id": "minimalcoordshud",
   "version": "${version}",
   "name": "MinimalCoordsHud",
-  "description": "Gives a simple coordinates display and lets you copy them to the clipboard -- that's it!",
-
+  "description": "Gives a simple coordinates display and lets you copy them to the clipboard - that's it!",
   "authors": [
     "renapti"
   ],
@@ -13,11 +12,9 @@
     "sources": "https://github.com/renapti/MinimalCoordsHud",
     "issues": "https://github.com/renapti/MinimalCoordsHud/issues"
   },
-
   "license": "CC0-1.0",
   "icon": "assets/minimalcoordshud/icon.png",
   "environment": "*",
-
   "entrypoints": {
     "main": [
       "com.renapti.minimalcoordshud.MinimalCoordsHud"
@@ -26,18 +23,15 @@
       "com.renapti.minimalcoordshud.client.MinimalCoordsHudClient"
     ]
   },
-
   "mixins": [
     "minimalcoordshud.mixins.json"
   ],
-
   "depends": {
     "fabricloader": ">=0.14.24",
     "minecraft": "1.20.1",
     "java": ">=17",
     "fabric-api": "*"
   },
-
   "suggests": {
     "another-mod": "*"
   }

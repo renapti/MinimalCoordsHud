@@ -1,12 +1,18 @@
 {
-  "category.minimalcoordshud.main": "Minimal Coords Hud",
+  "category.minimalcoordshud.main": "Minimal Coords HUD",
   "key.minimalcoordshud.copycoords": "Copy Current Coordinates",
   "key.minimalcoordshud.copycoords.interdimensional": "Copy Interdimensional Coords",
   "key.minimalcoordshud.togglehud": "Toggle Coordinates HUD",
-  "chat.minimalcoordshud.copied": "◆ Copied the coordinates (%d) to the clipboard!",
-  "chat.minimalcoordshud.copied.overworld": "◆ Copied the Overworld coordinates (%d) to the clipboard!",
-  "chat.minimalcoordshud.copied.nether": "◆ Copied the Nether coordinates (%d) to the clipboard!",
+  "key.minimalcoordshud.changecorner": "Change HUD Corner",
+  "chat.minimalcoordshud.copied": "◆ Copied the Coordinates (%d) to the clipboard!",
+  "chat.minimalcoordshud.copied.overworld": "◆ Copied the Overworld Coordinates (%d) to the clipboard!",
+  "chat.minimalcoordshud.copied.nether": "◆ Copied the Nether Coordinates (%d) to the clipboard!",
   "chat.minimalcoordshud.failed": "⚠ Could not copy! Are you in a modded dimension?",
   "hud.minimalcoordshud.facing.positive": "(+)",
-  "hud.minimalcoordshud.facing.negative": "(-)"
+  "hud.minimalcoordshud.facing.negative": "(-)",
+  "hud.minimalcoordshud.coords.error": "⚠ Unavailable!",
+  "config.minimalcoordshud.title": "Minimal Coords HUD",
+  "config.minimalcoordshud.general.title": "General",
+  "config.minimalcoordshud.general.dummy": "Dummy!!",
+  "config.minimalcoordshud.general.dummy.tooltip": "This is a dummy option!"
 }
