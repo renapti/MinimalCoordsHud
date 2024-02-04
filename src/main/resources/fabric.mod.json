@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "minimalcoordshud",
   "version": "${version}",
-  "name": "MinimalCoordsHud",
+  "name": "Minimal Coords HUD",
   "description": "Gives a simple coordinates display and lets you copy them to the clipboard - that's it!",
   "authors": [
     "renapti"
